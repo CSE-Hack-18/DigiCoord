@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+
 public class Database implements AutoCloseable {
 	static final String dbUrl = "jdbc:sqlite:./sqlite/db/digiCoord.db";
 	final String EOL = System.lineSeparator();

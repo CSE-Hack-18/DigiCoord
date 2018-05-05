@@ -1,3 +1,4 @@
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Unit {
@@ -18,18 +19,26 @@ public ArrayList<Staff> staffs;
 	this.floor = floor;
 }
 
-   public void addPatient(Patient p) {
+   public Unit(String type2, int floor2, int unit_id) {
+		// TODO Auto-generated constructor stub
+	}
+
+public void addPatient(Patient p) {
 	   for(int i = 0; i < rooms.size();) {
 	   
 		   if( rooms.get(i).capacity  > rooms.get(i).patientArray.size() ) {
 		   
 		   rooms.get(i).patientArray.add(p);
 		   try(Database db = new Database()) {
-			   addPatientToRoom(p.getSSN(), this.id, rooms.get(i).getNr());
-		   }
-		   catch SQLException{
-		   
-		   }
+			   db.addPatientToRoom(p.getSSN(), this.id, rooms.get(i).getNr());
+		   } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		  
 	   }
 		   else {
 			   i++;

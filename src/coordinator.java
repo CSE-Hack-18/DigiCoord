@@ -23,6 +23,7 @@ public class coordinator {
 		for(int i = 0; i < queque.size(); i++) {
 			 switch (queque.get(i).getDestination()) {
 			 case "ER":
+				 if(unit.getType() == "ER")
 				 unit.addPatient(queque.get(i));
 				 
 				 break;

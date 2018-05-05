@@ -53,6 +53,11 @@ public class Staff {
 	}
 
 
+	public Staff(String name2, String type2, int ssn2, int experience2) {
+		// TODO Auto-generated constructor stub
+	}
+
+
 	public String getExperience() {
 		return experience;
 	}

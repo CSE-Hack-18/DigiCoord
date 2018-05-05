@@ -17,6 +17,9 @@ public class Patient implements Comparable<Patient>  {
 		this.destination = destination;
 		this.startTime = startTime;
 	}
+	public Patient(String name2, int ssn2, int prio2, int reg_time) {
+		// TODO Auto-generated constructor stub
+	}
 	public String cause;
 	
 	public String getName() {
@@ -72,5 +75,11 @@ public class Patient implements Comparable<Patient>  {
 	}
 	public void setDestination(String destination) {
 		this.destination = destination;
+	}
+	public int getRoomnr() {
+		return roomnr;
+	}
+	public void setRoomnr(int roomnr) {
+		this.roomnr = roomnr;
 	}
 }

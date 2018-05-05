@@ -13,6 +13,10 @@ public class Room {
 		this.patientArray = patientArray;
 	}
 	
+	public Room(int number, int capacity2, String status2) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getCapacity() {
 		return capacity;
 	}
