@@ -74,7 +74,17 @@ public class Unit {
 		}
 		return beds;
 	}
-	
+	public void addAllPatients(ArrayList<Patient> patients) {
+		
+		for(int i = 0; i < rooms.size(); i++) {
+			for( int j = 0; j < patients.size(); j++) {
+				if(patients.get(j).getRoomNr() == rooms.get(i).getNr()) {
+					rooms.get(i).accomodatePatient(patients.get(j));
+				}
+			}
+		}
+		
+	}
 	public int singleRooms() {
 		int beds = 0;
 		for(int i = 0; i < rooms.size(); i++) {
