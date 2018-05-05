@@ -16,11 +16,21 @@ public ArrayList<Staff> staffs;
 	this.type = type;
 	this.id = id;
 	this.floor = floor;
-	this.rooms = rooms;
-	this.staffs = staffs;
 }
 
-
+   public void addPatient(Patient p) {
+	   for(int i = 0; i < rooms.size();) {
+	   
+		   if( rooms.get(i).capacity  - rooms.get(i).patientArray.size() > 0 ) {
+		   
+		   rooms.get(i).patientArray.add(p);
+		   
+	   }
+		   else {
+			   i++;
+		   }
+	   }
+   }
 	
 	
 

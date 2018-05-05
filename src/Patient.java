@@ -7,6 +7,7 @@ public class Patient implements Comparable<Patient>  {
 	private int prio;
 	private long startTime;
 	private String destination;
+	private int roomnr;
 	
 	public Patient(String name, String sSN, int prio, String destination, long startTime) {
 		

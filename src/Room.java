@@ -5,8 +5,9 @@ public class Room {
     private int nr;
 	public int capacity;
 	public ArrayList<Patient> patientArray;
+	private String status;
 	
-	public Room(int capacity, ArrayList<Patient> patientArray) {
+	public Room(int capacity, ArrayList<Patient> patientArray,int nr,String status) {
 		
 		this.capacity = capacity;
 		this.patientArray = patientArray;
@@ -38,6 +39,14 @@ public class Room {
 
 	public void setNr(int nr) {
 		this.nr = nr;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus( String status) {
+		this.status = status;
 	}
 	
 	
