@@ -2,8 +2,10 @@
 import java.util.*;
 
 public class coordinator {
+	Unit unit;
 	
 	public ArrayList<Patient> queque;
+	
 	
 
 	public coordinator() {
@@ -18,7 +20,31 @@ public class coordinator {
 	}
 	
 	public void placePatient() {
-		
+		for(int i = 0; i < queque.size(); i++) {
+			 switch (queque.get(i).getDestination()) {
+			 case "ER":
+				 if(unit.getType() == "ER")
+				 unit.addPatient(queque.get(i));
+				 
+				 break;
+			 case "ICU":
+				 unit.addPatient(queque.get(i));
+				 break;
+			
+			 case "Oncology":
+				 unit.addPatient(queque.get(i));
+				 break;
+			 case "XRAY":
+				 unit.addPatient(queque.get(i));
+				 break;
+			 case "OR":
+				 unit.addPatient(queque.get(i));
+			 break;
+			 }
+			
+			
+					
+		}
 		
 		
 		

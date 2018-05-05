@@ -1,16 +1,16 @@
 import java.util.*;
 
 public class Patient implements Comparable<Patient>  {
-	
+
 	private String name;
 	private int SSN;
 	private int prio;
 	private long startTime;
 	private String destination;
 	private int roomNr;
-	
+
 	public Patient(String name, int sSN, int prio, String destination, long startTime) {
-		
+
 		this.name = name;
 		this.SSN = sSN;
 		this.prio = prio;
@@ -23,8 +23,15 @@ public class Patient implements Comparable<Patient>  {
 		this.prio = prio2;
 		this.roomNr = roomNr;
 	}
+
+	public Patient(int reg_time, String name2, int ssn2, int prio2) {
+		this.name = name2;
+		this.SSN = ssn2;
+		this.prio = prio2;
+		this.startTime = reg_time;
+	}
 	public String cause;
-	
+
 	public String getName() {
 		return name;
 	}
@@ -43,18 +50,18 @@ public class Patient implements Comparable<Patient>  {
 	public void setPrio(int prio) {
 		this.prio = prio;
 	}
-	
+
 	public long getStartTime() {
 		return startTime;
 	}
 	public void setStartTime(long startTime) {
 		this.startTime = startTime;
 	}
-	
+
 
 	@Override
 	public int compareTo(Patient o) {
-	
+
 		if (this.prio > o.prio) {
 			return -1;
 		} else if (this.prio < o.prio) {
@@ -78,5 +85,11 @@ public class Patient implements Comparable<Patient>  {
 	}
 	public void setDestination(String destination) {
 		this.destination = destination;
+	}
+	public int getRoomnr() {
+		return roomnr;
+	}
+	public void setRoomnr(int roomnr) {
+		this.roomnr = roomnr;
 	}
 }
