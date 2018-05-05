@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Room {
 	
-	
+    private int nr;
 	public int capacity;
 	public ArrayList<Patient> patientArray;
 	
@@ -30,6 +30,14 @@ public class Room {
 	public void removePatient(Patient patient) {
 		patientArray.remove(patient);
 			
+	}
+
+	public int getNr() {
+		return nr;
+	}
+
+	public void setNr(int nr) {
+		this.nr = nr;
 	}
 	
 	

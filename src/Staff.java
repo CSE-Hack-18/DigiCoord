@@ -4,9 +4,18 @@ public class Staff {
 	private String name;
 	private String SSN;
 	private String type;
-	private int startTime;
-	private int endTime;
+	private String experience;
 	
+	
+
+	public Staff(String name,String type, String sSN, String experience) {
+		
+		this.name = name;
+		this.type = type;
+		SSN = sSN;
+		this.experience = experience;
+	}
+
 
 	public String getName() {
 		return name;
@@ -38,28 +47,19 @@ public class Staff {
 	}
 
 
-	public int getStartTime() {
-		return startTime;
-	}
-
-
-	public void setStartTime(int startTime) {
-		this.startTime = startTime;
-	}
-
-
-	public int getEndTime() {
-		return endTime;
-	}
-
-
-	public void setEndTime(int endTime) {
-		this.endTime = endTime;
-	}
-
 
 	public Staff() {
 		
+	}
+
+
+	public String getExperience() {
+		return experience;
+	}
+
+
+	public void setExperience(String experience) {
+		this.experience = experience;
 	}
 
 }

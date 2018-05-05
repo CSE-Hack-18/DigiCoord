@@ -1,16 +1,20 @@
+import java.util.*;
 
-public class Patient {
+public class Patient implements Comparable<Patient>  {
 	
 	private String name;
 	private String SSN;
 	private int prio;
+	private long startTime;
+	private String destination;
 	
-	public Patient(String name, String sSN, int prio, String cause) {
+	public Patient(String name, String sSN, int prio, String destination, long startTime) {
 		
 		this.name = name;
-		SSN = sSN;
+		this.SSN = sSN;
 		this.prio = prio;
-		this.cause = cause;
+		this.destination = destination;
+		this.startTime = startTime;
 	}
 	public String cause;
 	
@@ -24,7 +28,7 @@ public class Patient {
 		return SSN;
 	}
 	public void setSSN(String sSN) {
-		SSN = sSN;
+		this.SSN = sSN;
 	}
 	public int getPrio() {
 		return prio;
@@ -32,12 +36,40 @@ public class Patient {
 	public void setPrio(int prio) {
 		this.prio = prio;
 	}
-	public String getCause() {
-		return cause;
+	
+	public long getStartTime() {
+		return startTime;
 	}
-	public void setCause(String cause) {
-		this.cause = cause;
+	public void setStartTime(long startTime) {
+		this.startTime = startTime;
 	}
 	
 
+	@Override
+	public int compareTo(Patient o) {
+	
+		if (this.prio > o.prio) {
+			return -1;
+		} else if (this.prio < o.prio) {
+			return 1;
+		} else if (this.prio == o.prio) {
+			if (this.startTime > o.startTime) {
+				return -1;
+			} else if (this.startTime < o.startTime) {
+				return 1;
+			}
+
+			else if (this.startTime == o.startTime) {
+				return 0;
+			}
+
+		}
+		return 0;
+	}
+	public String getDestination() {
+		return destination;
+	}
+	public void setDestination(String destination) {
+		this.destination = destination;
+	}
 }

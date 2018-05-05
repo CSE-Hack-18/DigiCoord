@@ -3,19 +3,26 @@ import java.util.ArrayList;
 public class Unit {
 	
 public String type;
-	
-	public ArrayList<Room> rooms;
-	
-	public ArrayList<Staff> staffs;
-	
-	
-	public Unit(String type, ArrayList<Room> rooms, ArrayList<Staff> staffs) {
-		
-		this.type = type;
-		this.rooms = rooms;
-		this.staffs = staffs;
-	}
+private int id;
+private int floor;
 
+public ArrayList<Room> rooms;
+
+public ArrayList<Staff> staffs;
+
+
+	public Unit(String type, int id, int floor, ArrayList<Room> rooms, ArrayList<Staff> staffs) {
+	
+	this.type = type;
+	this.id = id;
+	this.floor = floor;
+	this.rooms = rooms;
+	this.staffs = staffs;
+}
+
+
+	
+	
 
 	public String getType() {
 		return type;
@@ -69,6 +76,26 @@ public String type;
 		
 		
 		
+	}
+
+
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+	public int getFloor() {
+		return floor;
+	}
+
+
+	public void setFloor(int floor) {
+		this.floor = floor;
 	}
 
 	
