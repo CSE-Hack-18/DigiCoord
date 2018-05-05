@@ -23,6 +23,15 @@ public ArrayList<Staff> staffs;
 		// TODO Auto-generated constructor stub
 	}
 
+   public double workLoad() {
+	   int count=0;
+	   for(int i = 0; i < rooms.size(); i++) {
+		   count += rooms.get(i).patientArray.size();
+	   }
+	   return  (double)(staffs.size() / count);
+   }
+   
+   
 public void addPatient(Patient p) {
 	   for(int i = 0; i < rooms.size();) {
 	   
@@ -46,8 +55,34 @@ public void addPatient(Patient p) {
 	   }
    }
 	
-	
+	public boolean hasAnyAvailableRooms() {
+		
+		for(int i = 0; i < rooms.size(); i++) {
+			if( rooms.get(i).available()) {
+				return true;
+			}
+		}
+		return false;
+	}
+	public int countAvailableBeds() {
+		int beds= 0;
+		for(int i = 0; i < rooms.size(); i++) {
+			beds += rooms.get(i).freeBeds();
+		}
+		return beds;
+	}
+	public int singleRooms() {
+		
+		int beds = 0;
+		for(int i = 0; i < rooms.size(); i++) {
+			if(rooms.get(i).isSingleRoom()) {
+				beds += rooms.get(i).freeBeds();
+			}
 
+		}
+		return beds;
+		
+	}
 	public String getType() {
 		return type;
 	}

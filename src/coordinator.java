@@ -2,10 +2,9 @@
 import java.util.*;
 
 public class coordinator {
-	Unit unit;
+	Unit[] units = new Unit[6];
 	
 	public ArrayList<Patient> queque;
-	
 	
 
 	public coordinator() {
@@ -19,40 +18,25 @@ public class coordinator {
 		 Collections.sort(queque);
 	}
 	
+	
 	public void placePatient() {
 		for(int i = 0; i < queque.size(); i++) {
-			 switch (queque.get(i).getDestination()) {
-			 case "ER":
-				 if(unit.getType() == "ER")
-				 unit.addPatient(queque.get(i));
-				 
-				 break;
-			 case "ICU":
-				 unit.addPatient(queque.get(i));
-				 break;
-			
-			 case "Oncology":
-				 unit.addPatient(queque.get(i));
-				 break;
-			 case "XRAY":
-				 unit.addPatient(queque.get(i));
-				 break;
-			 case "OR":
-				 unit.addPatient(queque.get(i));
-			 break;
-			 }
-			
-			
+			String destination = queque.get(i).getDestination();
+			for (int j = 1; j < units.length; j++) {
+				if (units[j].getType() == destination) {
+					if(units[j].roomAvailable()) {
+						
 					
-		}
-		
-		
-		
+					units[j].addPatient(queque.get(i));
+					}
+				}
 			}
 			
+				
 			
 			
-			
+		}
 
 
+}
 }

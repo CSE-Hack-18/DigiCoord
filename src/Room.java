@@ -52,9 +52,15 @@ public class Room {
 	public void setStatus( String status) {
 		this.status = status;
 	}
-	
-	
-	
+	public boolean available()  {
+		return capacity > patientArray.size();
+	}
+	public int freeBeds() {
+		return capacity - patientArray.size();
+	}
+	public boolean isSingleRoom() {
+		return capacity == 1;
+	}
 	
 
 }
