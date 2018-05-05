@@ -279,4 +279,8 @@ public class Database implements AutoCloseable {
 	public void close() throws Exception {
 		conn.close();
 	}
+	public void addPatientToRoom(String ssn, int id, int nr) {
+		// TODO Auto-generated method stub
+		
+	}
 }
