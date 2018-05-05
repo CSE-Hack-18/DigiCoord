@@ -63,7 +63,7 @@
                                           <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#da2b2b" height="92.0" layoutX="1175.0" layoutY="543.0" stroke="BLACK" strokeType="OUTSIDE" width="58.0" />
                                           <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#da2b2b" height="92.0" layoutX="1235.0" layoutY="543.0" stroke="BLACK" strokeType="OUTSIDE" width="58.0" />
                                           <Button fx:id="testUpdate" layoutX="1113.0" layoutY="368.0" mnemonicParsing="false" onAction="#testUpdate" text="Update" />
-                                          <TableView layoutX="41.0" layoutY="18.0" prefHeight="355.0" prefWidth="549.0">
+                                          <TableView fx:id="ERWaitingList" layoutX="41.0" layoutY="18.0" prefHeight="355.0" prefWidth="549.0">
                                             <columns>
                                               <TableColumn prefWidth="170.0" text="Patient" />
                                               <TableColumn prefWidth="114.0" text="Prio" />

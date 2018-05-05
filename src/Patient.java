@@ -8,6 +8,8 @@ public class Patient implements Comparable<Patient>  {
 	private long startTime;
 	private String destination;
 	
+	
+	
 	public Patient(String name, String sSN, int prio, String destination, long startTime) {
 		
 		this.name = name;

@@ -11,6 +11,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+
+import application.Customer;
 public class Database implements AutoCloseable {
 	static final String dbUrl = "jdbc:sqlite:./sqlite/db/digiCoord.db";
 	final String EOL = System.lineSeparator();
@@ -158,5 +160,31 @@ public class Database implements AutoCloseable {
 	
 	public void close() throws Exception {
 		conn.close();
+	}
+	public Patient[] getERWaitingList(String dept) throws SQLException {
+
+		String sql = "SELECT * FROM patient";
+		ResultSet customerSet = PreparedQuery(sql);
+		Patient[] customerArray = rsToPatientArrayPlus(customerSet);
+		return customerArray;
+}
+	public Patient[] rsToPatientArrayPlus(ResultSet customerSet) throws SQLException {
+		ArrayList<Patient> patientList= new ArrayList<Patient>();
+		String name, sSn, destination;
+		int  prio;
+		long startTime;
+		while(customerSet.next()) {
+			name = customerSet.getString("name");
+			sSn = customerSet.getString("sSN");
+			prio = customerSet.getInt("prio");
+			destination = customerSet.getString("destination");
+			startTime = customerSet.getLong("startTime");
+			
+			Patient temp = new Patient( name, sSn, prio, destination, startTime);
+			patientList.add(temp);	
+		}
+		customerSet.close();
+		Patient[] patientArray = patientList.toArray(new Patient[patientList.size()]);
+		return patientArray;
 	}
 }

@@ -7,7 +7,10 @@ import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
+
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -19,14 +22,25 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class frontController implements Initializable {
 
+	
+	   @FXML
+	    private TableView<Patient> ERWaitingList;
+	   @FXML
+	    private TableColumn<Patient, String> ERwaitingListPatient, ERwaitingListNote ;
+		@FXML private TableColumn<Patient, Integer> ERwaitingListPrio;
+		@FXML private TableColumn<Patient, Long> ERwaitingListTime;
+		
     @FXML
     private TabPane deptTab;
 	@FXML
@@ -78,19 +92,42 @@ public class frontController implements Initializable {
 		Optional<Integer> result = dialog.showAndWait();
 	}
 	
-	public void  timer ()   {
 	
-		System.out.println("hej");
-		
-	}
+	  public ObservableList<Patient> getERWaitingList() throws Exception {
+			ObservableList<Patient> customerList = FXCollections.observableArrayList();
+			try(Database db = new Database()) {
+				Patient[] allCustomers = db.getERWaitingList("ER");
+				customerList.addAll(allCustomers);
+			}
+			return customerList;
+		}
+	
+	
+	
+	
+	
+
 	public void initialize(URL location, ResourceBundle resources) {
-	
+	/*
+		ERwaitingListPatient.setCellValueFactory(new PropertyValueFactory<Patient, String>("patient"));
+		ERwaitingListPrio.setCellValueFactory(new PropertyValueFactory<Patient, Integer>("prio"));
+		ERwaitingListNote.setCellValueFactory(new PropertyValueFactory<Patient, String>("note"));
+		ERwaitingListTime.setCellValueFactory(new PropertyValueFactory<Patient, Long>("time"));
+		*/
 
 		    Timer timer = new Timer();
 		    
 		    timer.schedule(new TimerTask() {
 		    	  @Override
 		    	  public void run() {
+		    		 try {
+						ERWaitingList.setItems(getERWaitingList());
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+		    		  
+		    		  
 		    	    System.out.print("hej");
 		    	  }
 		    	}, 15*1000);
