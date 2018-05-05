@@ -24,6 +24,16 @@ public ArrayList<Staff> staffs;
 	
 	
 
+	public Unit(String type2, int floor2, int unit_id) {
+		this.type = type2;
+		this.floor = floor2;
+		this.id = unit_id;
+	}
+
+
+
+
+
 	public String getType() {
 		return type;
 	}

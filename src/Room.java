@@ -5,13 +5,19 @@ public class Room {
     private int nr;
 	public int capacity;
 	public ArrayList<Patient> patientArray;
-	
+	boolean status;
 	public Room(int capacity, ArrayList<Patient> patientArray) {
 		
 		this.capacity = capacity;
 		this.patientArray = patientArray;
 	}
 	
+	public Room(int number, int capacity2, boolean status) {
+		this.nr = number;
+		this.capacity = capacity2;
+		this.status = status;;
+	}
+
 	public int getCapacity() {
 		return capacity;
 	}

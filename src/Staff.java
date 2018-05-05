@@ -2,13 +2,13 @@
 public class Staff {
 	
 	private String name;
-	private String SSN;
+	private int SSN;
 	private String type;
-	private String experience;
+	private int experience;
 	
 	
 
-	public Staff(String name,String type, String sSN, String experience) {
+	public Staff(String name,String type, int sSN, int experience) {
 		
 		this.name = name;
 		this.type = type;
@@ -53,12 +53,12 @@ public class Staff {
 	}
 
 
-	public String getExperience() {
+	public int getExperience() {
 		return experience;
 	}
 
 
-	public void setExperience(String experience) {
+	public void setExperience(int experience) {
 		this.experience = experience;
 	}
 

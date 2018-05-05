@@ -3,18 +3,25 @@ import java.util.*;
 public class Patient implements Comparable<Patient>  {
 	
 	private String name;
-	private String SSN;
+	private int SSN;
 	private int prio;
 	private long startTime;
 	private String destination;
+	private int roomNr;
 	
-	public Patient(String name, String sSN, int prio, String destination, long startTime) {
+	public Patient(String name, int sSN, int prio, String destination, long startTime) {
 		
 		this.name = name;
 		this.SSN = sSN;
 		this.prio = prio;
 		this.destination = destination;
 		this.startTime = startTime;
+	}
+	public Patient(String name2, int ssn2, int prio2, int roomNr) {
+		this.name = name2;
+		this.SSN = ssn2;
+		this.prio = prio2;
+		this.roomNr = roomNr;
 	}
 	public String cause;
 	
@@ -24,10 +31,10 @@ public class Patient implements Comparable<Patient>  {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getSSN() {
+	public int getSSN() {
 		return SSN;
 	}
-	public void setSSN(String sSN) {
+	public void setSSN(int sSN) {
 		this.SSN = sSN;
 	}
 	public int getPrio() {
