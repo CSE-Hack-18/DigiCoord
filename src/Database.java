@@ -12,7 +12,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 
+
 import application.Customer;
+
+
 public class Database implements AutoCloseable {
 	static final String dbUrl = "jdbc:sqlite:./sqlite/db/digiCoord.db";
 	final String EOL = System.lineSeparator();
@@ -175,12 +178,12 @@ public class Database implements AutoCloseable {
 	}
 	public ArrayList<Room> rsToRoomArray(ResultSet roomSet) throws SQLException {
 		ArrayList<Room> roomList = new ArrayList<Room>();
-		String status;
+		boolean status;
 		int number, capacity;
 		
 		while(roomSet.next()) {
 			
-			status = roomSet.getString("status");
+			status = roomSet.getBoolean("status");
 			number = roomSet.getInt("ssn");
 			capacity = roomSet.getInt("prio");			
 			Room temp = new Room(number, capacity, status);
@@ -280,6 +283,7 @@ public class Database implements AutoCloseable {
 	public void close() throws Exception {
 		conn.close();
 	}
+
 	public ArrayList<Patient> getERWaitingList() throws SQLException {
 
 		String sql = "SELECT * FROM patient";
@@ -332,6 +336,12 @@ public class Database implements AutoCloseable {
 		
 	}
 	
+	
+
+	public void addPatientToRoom(int i, int id, int nr) {
+		// TODO Auto-generated method stub
+		
 	}
+}
 
 
