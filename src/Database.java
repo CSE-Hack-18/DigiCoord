@@ -40,16 +40,16 @@ public class Database implements AutoCloseable {
 		createAdminTable();
 	}
 	public void createUnitTable() throws SQLException {
-		String sql = "CREATE TABLE unit (" + EOL + 
+		String sql = "CREATE TABLE IF NOT EXISTS unit  (" + EOL + 
 				"unit_id INTEGER," + EOL + 
-				"name VARCHAR," + EOL + 
+				"type VARCHAR," + EOL + 
 				"floor INTEGER," + EOL + 
-				"PRIMARY KEY (id)," + EOL + 
+				"PRIMARY KEY (unit_id)," + EOL + 
 				"CHECK (floor >= 0 OR floor <= 5));";
 		PreparedExecute(sql);
 	}
 	public void createEmployeeTable() throws SQLException {
-		String sql = "CREATE TABLE employee ( " + EOL + 
+		String sql = "CREATE TABLE IF NOT EXISTS employee ( " + EOL + 
 				"name VARCHAR," + EOL + 
 				"ssn VARCHAR," + EOL + 
 				"type VARCHAR," + EOL + 
@@ -60,44 +60,164 @@ public class Database implements AutoCloseable {
 				"CHECK (type = 'nurse' OR type = 'assist.nurse' OR type = 'doctor' ));";
 		PreparedExecute(sql);
 	}
-
 	public void createPatientTable() throws SQLException {
-		String sql = "CREATE TABLE patient ( " + EOL + 
+		String sql = "CREATE TABLE IF NOT EXISTS patient ( " + EOL + 
 				"name VARCHAR," + EOL + 
 				"ssn VARCAHR," + EOL + 
-				"id INTEGER," + EOL + 
 				"reg_time DATE," + EOL + 
+				"prio INTEGER," + EOL +
 				"destination INTEGER," + EOL +
 				"FOREIGN KEY (destination) REFERENCES unit(unit_id)," + EOL +
-				"PRIMARY KEY (ssn));";
+				"PRIMARY KEY (ssn) );";
 		PreparedExecute(sql);
 	}
 	public void createRoomTable() throws SQLException {
-		String sql = "CREATE TABLE room ( " + EOL + 
+		String sql = "CREATE TABLE IF NOT EXISTS room ( " + EOL + 
 				"number INTEGER, " + EOL + 
 				"unit INTEGER," + EOL + 
 				"beds INTEGER," + EOL + 
-				"op_room BOOLEAN," + EOL + 
-				"PRIMARY KEY (number, unit)" + EOL + 
+				"cleaning BOOLEAN," + EOL + 
+				"PRIMARY KEY (number, unit)," + EOL + 
 				"FOREIGN KEY (unit) REFERENCES unit(unit_id));";
 		PreparedExecute(sql);
 	}
 	public void createRoomOccupancyTable() throws SQLException {
-		String sql = "CREATE TABLE room_occupancy (" + EOL + 
-				"patient_id INTEGER," + EOL + 
+		String sql = "CREATE TABLE IF NOT EXISTS room_occupancy (" + EOL + 
+				"p_ssn INTEGER," + EOL + 
 				"roomNr INTEGER," + EOL + 
 				"unit INTEGER," + EOL + 
-				"PK ( patient_id, roomNr, unit)," + EOL + 
-				"FK (patient_id) REFERENCES patient(id)," + EOL + 
-				"FK (roomNr, unit) REFERENCES room(number, unit));";
+				"PRIMARY KEY( p_ssn, roomNr, unit)," + EOL + 
+				"FOREIGN KEY (p_ssn) REFERENCES patient(ssn)," + EOL + 
+				"FOREIGN KEY (roomNr, unit) REFERENCES room(number, unit));";
 		PreparedExecute(sql);
 	}
 	public void createAdminTable() throws SQLException {
-		String sql = "CREATE TABLE admin (" + EOL + 
+		String sql = "CREATE TABLE IF NOT EXISTS admin (" + EOL + 
 				"ssn VARCHAR," + EOL + 
 				"password VARCHAR," + EOL + 
 				"FOREIGN KEY (ssn) REFERENCES employee(ssn));";
 		PreparedExecute(sql);
+	}
+	public Unit getUnit(int unit_id) throws SQLException {
+		String getUnit = "SELECT * FROM unit WHERE unit_id = ?";
+		ResultSet unitSet = PreparedQuery(getUnit, unit_id);
+		Unit result = rsToUnit(unitSet);
+		unitSet.close();
+		return result;
+	}
+	public Unit rsToUnit(ResultSet unitSet) throws SQLException {
+		String type;
+		int floor, unit_id;
+		
+		type = unitSet.getString("type");
+		floor = unitSet.getInt("floor");
+		unit_id = unitSet.getInt("unit_id");
+		
+		Unit result = new Unit(type, floor, unit_id);
+		
+		return result;
+	}
+	public ArrayList<Staff> getStaffByUnit(int unit_id) throws SQLException {
+		String getStaff = "SELECT * FROM employee WHERE unit = ?";
+		ResultSet staffSet = PreparedQuery(getStaff, unit_id);
+		ArrayList<Staff> result = rsToStaffArray(staffSet);
+		return result;
+		
+	}
+	public ArrayList<Staff> rsToStaffArray(ResultSet staffSet) throws SQLException {
+		ArrayList<Staff> staffList = new ArrayList<Staff>();
+		String name, type;
+		int ssn, experience;
+		
+		while(staffSet.next()) {
+			
+			name = staffSet.getString("name");
+			type = staffSet.getString("type");
+			ssn = staffSet.getInt("ssn");
+			experience = staffSet.getInt("experience");
+			Staff temp = new Staff(name, type, ssn, experience);
+			staffList.add(temp);
+		}
+		staffSet.close();
+		return staffList;
+		
+	}
+	public ArrayList<Patient> getPatientsByUnit(int unit_id) throws SQLException {
+		String getPatients = "SELECT name,ssn,id,prio,room_number FROM patient as p INNER JOIN room_occupancy as r "
+				+ "ON p.id = r.patient_id WHERE r.department_id = ?";
+		ResultSet patientSet = PreparedQuery(getPatients, unit_id);
+		ArrayList<Patient> result = rsToPatientWithRoomArray(patientSet);
+		return result;
+	}
+	public ArrayList<Patient> rsToPatientWithRoomArray(ResultSet patientSet) throws SQLException {
+		ArrayList<Patient> patientList = new ArrayList<Patient>();
+		String name;
+		int ssn, prio, roomNr;
+		
+		while(patientSet.next()) {
+			
+			name = patientSet.getString("name");
+			ssn = patientSet.getInt("ssn");
+			prio = patientSet.getInt("prio");
+			roomNr = patientSet.getInt("room_number");
+			Patient temp = new Patient(name, ssn, prio, roomNr);
+			patientList.add(temp);
+		}
+		patientSet.close();
+		return patientList;
+		
+	}
+	public ArrayList<Room> getRoomsByUnit(int unit_id) throws SQLException {
+		String getRooms = "SELECT number, bed, status FROM room WHERE unit = ?";
+		ResultSet roomSet = PreparedQuery(getRooms, unit_id);
+		ArrayList<Room> result = rsToRoomArray(roomSet);
+		return result;
+	}
+	public ArrayList<Room> rsToRoomArray(ResultSet roomSet) throws SQLException {
+		ArrayList<Room> roomList = new ArrayList<Room>();
+		String status;
+		int number, capacity;
+		
+		while(roomSet.next()) {
+			
+			status = roomSet.getString("status");
+			number = roomSet.getInt("ssn");
+			capacity = roomSet.getInt("prio");			
+			Room temp = new Room(number, capacity, status);
+			roomList.add(temp);
+		}
+		roomSet.close();
+		return roomList;
+	}
+	public ArrayList<Patient> getWaitingPatients() throws SQLException {
+		String getPatients = "WITH roomPatients AS ("
+				+ "SELECT name,ssn,id,reg_time,prio FROM employee as e INNER JOIN"
+				+ "room_occupancy as r ON e.id = r.patient_id),"
+				+ "allPatients AS ("
+				+ "SELECT * FROM patient)"
+				+ "SELECT * FROM allPatients EXCEPT roomPatients;";
+		ResultSet patientSet = PreparedQuery(getPatients);
+		ArrayList<Patient> result = rsToPatientWoRoomArray(patientSet);
+		
+		return result;
+	}
+	public ArrayList<Patient> rsToPatientWoRoomArray(ResultSet patientSet) throws SQLException {
+		ArrayList<Patient> patientList = new ArrayList<Patient>();
+		String name;
+		int ssn, prio, reg_time;
+		
+		while(patientSet.next()) {
+			
+			name = patientSet.getString("name");
+			ssn = patientSet.getInt("ssn");
+			prio = patientSet.getInt("prio");
+			reg_time = patientSet.getInt("reg_time");
+			Patient temp = new Patient(name, ssn, prio, reg_time);
+			patientList.add(temp);
+		}
+		patientSet.close();
+		return patientList;
+		
 	}
 	public ResultSet PreparedQuery(String query, Object...objects) throws SQLException {
 		PreparedStatement pstmt = conn.prepareStatement(query);

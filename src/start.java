@@ -1,6 +1,7 @@
 
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.awt.Button;
 
 import javafx.application.Application;
@@ -15,11 +16,11 @@ import javafx.scene.Scene;
 
 public class start extends Application  {
 
-	public void start(Stage primaryStage) throws IOException {
+	public void start(Stage primaryStage) throws IOException, SQLException {
 		
 			Parent root = FXMLLoader.load(getClass().getResource("loginStart.fxml"));
 			Scene scene = new Scene(root,556,320);
-			
+			Database hospital = new Database();
 		
 			primaryStage.setTitle("Hospital system");
 			primaryStage.setScene(scene);
