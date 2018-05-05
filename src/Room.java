@@ -16,7 +16,7 @@ public class Room {
 	public Room(int number, int capacity2, boolean status) {
 		this.nr = number;
 		this.capacity = capacity2;
-		this.status = status;;
+		this.status = status;
 }
 	public int getCapacity() {
 		return capacity;
@@ -27,10 +27,7 @@ public class Room {
 	
 	
 	public void accomodatePatient(Patient newPatient) {
-		
 		patientArray.add(newPatient);
-		
-		
 	}
 	
 	public void removePatient(Patient patient) {

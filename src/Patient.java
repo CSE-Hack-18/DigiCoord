@@ -86,7 +86,7 @@ public class Patient implements Comparable<Patient>  {
 	public void setDestination(String destination) {
 		this.destination = destination;
 	}
-	public int getRoomnr() {
+	public int getRoomNr() {
 		return roomNr;
 	}
 	public void setRoomnr(int roomnr) {

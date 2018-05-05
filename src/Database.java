@@ -142,8 +142,8 @@ public class Database implements AutoCloseable {
 		
 	}
 	public ArrayList<Patient> getPatientsByUnit(int unit_id) throws SQLException {
-		String getPatients = "SELECT name,ssn,id,prio,room_number FROM patient as p INNER JOIN room_occupancy as r "
-				+ "ON p.id = r.patient_id WHERE r.department_id = ?";
+		String getPatients = "SELECT name,ssn,prio,roomNr FROM patient as p INNER JOIN room_occupancy as r "
+				+ "ON p.ssn = r.p_ssn WHERE r.unit = ?";
 		ResultSet patientSet = PreparedQuery(getPatients, unit_id);
 		ArrayList<Patient> result = rsToPatientWithRoomArray(patientSet);
 		return result;
@@ -158,7 +158,7 @@ public class Database implements AutoCloseable {
 			name = patientSet.getString("name");
 			ssn = patientSet.getInt("ssn");
 			prio = patientSet.getInt("prio");
-			roomNr = patientSet.getInt("room_number");
+			roomNr = patientSet.getInt("roomNr");
 			Patient temp = new Patient(name, ssn, prio, roomNr);
 			patientList.add(temp);
 		}
@@ -167,22 +167,22 @@ public class Database implements AutoCloseable {
 		
 	}
 	public ArrayList<Room> getRoomsByUnit(int unit_id) throws SQLException {
-		String getRooms = "SELECT number, bed, status FROM room WHERE unit = ?";
+		String getRooms = "SELECT number, beds, cleaning FROM room WHERE unit = ?";
 		ResultSet roomSet = PreparedQuery(getRooms, unit_id);
 		ArrayList<Room> result = rsToRoomArray(roomSet);
 		return result;
 	}
 	public ArrayList<Room> rsToRoomArray(ResultSet roomSet) throws SQLException {
 		ArrayList<Room> roomList = new ArrayList<Room>();
-		boolean status;
+		boolean cleaning;
 		int number, capacity;
 		
 		while(roomSet.next()) {
 			
-			status = roomSet.getBoolean("status");
-			number = roomSet.getInt("ssn");
-			capacity = roomSet.getInt("prio");			
-			Room temp = new Room(number, capacity, status);
+			cleaning = roomSet.getBoolean("cleaning");
+			number = roomSet.getInt("number");
+			capacity = roomSet.getInt("beds");			
+			Room temp = new Room(number, capacity, cleaning);
 			roomList.add(temp);
 		}
 		roomSet.close();
