@@ -5,18 +5,19 @@ public class Room {
     private int nr;
 	public int capacity;
 	public ArrayList<Patient> patientArray;
-	private String status;
-	
+	boolean status;
 	public Room(int capacity, ArrayList<Patient> patientArray,int nr,String status) {
+
 		
 		this.capacity = capacity;
 		this.patientArray = patientArray;
 	}
 	
-	public Room(int number, int capacity2, String status2) {
-		// TODO Auto-generated constructor stub
-	}
-
+	public Room(int number, int capacity2, boolean status) {
+		this.nr = number;
+		this.capacity = capacity2;
+		this.status = status;;
+}
 	public int getCapacity() {
 		return capacity;
 	}
@@ -45,11 +46,11 @@ public class Room {
 		this.nr = nr;
 	}
 
-	public String getStatus() {
+	public boolean getStatus() {
 		return status;
 	}
 
-	public void setStatus( String status) {
+	public void setStatus( boolean status) {
 		this.status = status;
 	}
 	public boolean available()  {

@@ -1,15 +1,15 @@
 
 public class Staff {
-	
-	private String name;
-	private String SSN;
-	private String type;
-	private String experience;
-	
-	
 
-	public Staff(String name,String type, String sSN, String experience) {
-		
+	private String name;
+	private int SSN;
+	private String type;
+	private int experience;
+
+
+
+	public Staff(String name,String type, int sSN, int experience) {
+
 		this.name = name;
 		this.type = type;
 		SSN = sSN;
@@ -27,12 +27,12 @@ public class Staff {
 	}
 
 
-	public String getSSN() {
+	public int getSSN() {
 		return SSN;
 	}
 
 
-	public void setSSN(String sSN) {
+	public void setSSN(int sSN) {
 		SSN = sSN;
 	}
 
@@ -49,22 +49,17 @@ public class Staff {
 
 
 	public Staff() {
-		
+
 	}
 
 
-	public Staff(String name2, String type2, int ssn2, int experience2) {
-		// TODO Auto-generated constructor stub
+	public int getExperience() {
+				return experience;
 	}
 
 
-	public String getExperience() {
-		return experience;
-	}
-
-
-	public void setExperience(String experience) {
+	public void setExperience(int experience) {
 		this.experience = experience;
 	}
 
-}
+	}

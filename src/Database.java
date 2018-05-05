@@ -174,12 +174,12 @@ public class Database implements AutoCloseable {
 	}
 	public ArrayList<Room> rsToRoomArray(ResultSet roomSet) throws SQLException {
 		ArrayList<Room> roomList = new ArrayList<Room>();
-		String status;
+		boolean status;
 		int number, capacity;
 		
 		while(roomSet.next()) {
 			
-			status = roomSet.getString("status");
+			status = roomSet.getBoolean("status");
 			number = roomSet.getInt("ssn");
 			capacity = roomSet.getInt("prio");			
 			Room temp = new Room(number, capacity, status);
@@ -280,7 +280,7 @@ public class Database implements AutoCloseable {
 	public void close() throws Exception {
 		conn.close();
 	}
-	public void addPatientToRoom(String ssn, int id, int nr) {
+	public void addPatientToRoom(int i, int id, int nr) {
 		// TODO Auto-generated method stub
 		
 	}
