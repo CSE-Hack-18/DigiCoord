@@ -21,10 +21,15 @@ public ArrayList<Staff> staffs;
    public void addPatient(Patient p) {
 	   for(int i = 0; i < rooms.size();) {
 	   
-		   if( rooms.get(i).capacity  - rooms.get(i).patientArray.size() > 0 ) {
+		   if( rooms.get(i).capacity  > rooms.get(i).patientArray.size() ) {
 		   
 		   rooms.get(i).patientArray.add(p);
+		   try(Database db = new Database()) {
+			   addPatientToRoom(p.getSSN(), this.id, rooms.get(i).getNr());
+		   }
+		   catch SQLException{
 		   
+		   }
 	   }
 		   else {
 			   i++;
