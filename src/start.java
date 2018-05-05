@@ -17,8 +17,8 @@ public class start extends Application  {
 
 	public void start(Stage primaryStage) throws IOException {
 		
-			Parent root = FXMLLoader.load(getClass().getResource("front.fxml"));
-			Scene scene = new Scene(root,1600,820);
+			Parent root = FXMLLoader.load(getClass().getResource("loginStart.fxml"));
+			Scene scene = new Scene(root,556,320);
 			
 		
 			primaryStage.setTitle("Hospital system");
