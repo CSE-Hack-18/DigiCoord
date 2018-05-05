@@ -38,7 +38,7 @@ public class PleaseProvideControllerClassName {
            */
           Scene scene = new Scene(fxmlLoader.load(), 1600, 800);
           Stage stage = new Stage();
-          stage.setTitle("New Window");
+          stage.setTitle("Hospital System");
           stage.setScene(scene);
           stage.show();
          

@@ -1,0 +1,36 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+.content{
+  
+    /* others properties */
+}
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-opacity: 0;
+}
+
+.tab-pane
+{
+    -fx-tab-min-width:90px;
+}
+
+.tab{
+    -fx-background-insets: 0 1 0 1,0,0;
+}
+.tab-pane .tab
+{
+    -fx-background-color: #cbe1ec;
+
+}
+
+.tab-pane .tab:selected
+{
+    -fx-background-color: #a1cade;
+    
+    }
+ .root {
+    -fx-background-color: linear-gradient(to bottom right, white 0%, cornflowerblue 100% );
+
+}
+
+.text-area, .text-area .viewport, .text-area .content {
+    -fx-background-color: transparent ;
+}
