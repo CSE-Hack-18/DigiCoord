@@ -11,7 +11,7 @@ public class coordinator {
 		
 	}
 	
-	public void enquequePatient(String name,String sSn,int prio, String destination,long startTime) {
+	public void enquequePatient(String name,int sSn,int prio, String destination,long startTime) {
 		
 		 Patient p = new Patient(name,sSn,prio,destination,startTime);
 		 queque.add(p);
@@ -24,7 +24,7 @@ public class coordinator {
 			String destination = queque.get(i).getDestination();
 			for (int j = 1; j < units.length; j++) {
 				if (units[j].getType() == destination) {
-					if(units[j].roomAvailable()) {
+					if(units[j].hasAnyAvailableRooms()) {
 						
 					
 					units[j].addPatient(queque.get(i));

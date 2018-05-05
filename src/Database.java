@@ -189,12 +189,10 @@ public class Database implements AutoCloseable {
 		return roomList;
 	}
 	public ArrayList<Patient> getWaitingPatients() throws SQLException {
-		String getPatients = "WITH roomPatients AS ("
-				+ "SELECT name,ssn,id,reg_time,prio FROM employee as e INNER JOIN"
-				+ "room_occupancy as r ON e.id = r.patient_id),"
-				+ "allPatients AS ("
-				+ "SELECT * FROM patient)"
-				+ "SELECT * FROM allPatients EXCEPT roomPatients;";
+		String getPatients = "SELECT * FROM patient EXCEPT "
+				+ "SELECT p.name, p.ssn, p.reg_time, p.prio, p.destination "
+				+ "FROM patient as p \n" + 
+				"INNER JOIN room_occupancy as r WHERE p.ssn = r.p_ssn;";
 		ResultSet patientSet = PreparedQuery(getPatients);
 		ArrayList<Patient> result = rsToPatientWoRoomArray(patientSet);
 		
@@ -285,3 +283,5 @@ public class Database implements AutoCloseable {
 		
 	}
 }
+
+
