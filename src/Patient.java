@@ -4,6 +4,14 @@ public class Patient {
 	private String name;
 	private String SSN;
 	private int prio;
+	
+	public Patient(String name, String sSN, int prio, String cause) {
+		
+		this.name = name;
+		SSN = sSN;
+		this.prio = prio;
+		this.cause = cause;
+	}
 	public String cause;
 	
 	public String getName() {
