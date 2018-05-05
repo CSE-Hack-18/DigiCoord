@@ -1,6 +1,8 @@
 
 
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -32,14 +34,14 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class frontController implements Initializable {
-
+Database db;
 	
 	   @FXML
-	    private TableView<Patient> ERWaitingList;
+	    private TableView<Patient>  ERWaitingList, ORWaitingList; //roomInfo,
 	   @FXML
-	    private TableColumn<Patient, String> ERwaitingListPatient, ERwaitingListNote ;
-		@FXML private TableColumn<Patient, Integer> ERwaitingListPrio;
-		@FXML private TableColumn<Patient, Long> ERwaitingListTime;
+	    private TableColumn<Patient, String> ERwaitingListPatient, ERwaitingListNote; //ORwaitingListPatient, ORwaitingListNote ;
+		@FXML private TableColumn<Patient, Integer> ERwaitingListPrio, vacantRooms, vacantSharedRooms, totalPatients;// ORwaitingListPrio;
+		@FXML private TableColumn<Patient, Long> ERwaitingListTime; //ORwaitingListTime;
 		
     @FXML
     private TabPane deptTab;
@@ -51,8 +53,8 @@ public class frontController implements Initializable {
     @FXML
     private Rectangle room101, room102, room103;
     
-    @FXML
-    private TextArea roomInfo;
+
+    
     
     @FXML
     private Tab ER;
@@ -94,47 +96,70 @@ public class frontController implements Initializable {
 	
 	
 	  public ObservableList<Patient> getERWaitingList() throws Exception {
-			ObservableList<Patient> customerList = FXCollections.observableArrayList();
+			ObservableList<Patient> patientList = FXCollections.observableArrayList();
 			try(Database db = new Database()) {
-				Patient[] allCustomers = db.getERWaitingList("ER");
-				customerList.addAll(allCustomers);
+				ArrayList<Patient> allPatient = db.getWaitingPatients();
+				patientList.addAll(allPatient);
 			}
-			return customerList;
+			return patientList;
+		}/*
+	  public ObservableList<Patient> getORWaitingList() throws Exception {
+			ObservableList<Patient> patientList = FXCollections.observableArrayList();
+			try(Database db = new Database()) {
+				ArrayList<Patient> allPatient = db.getWaitingPatients();
+				patientList.addAll(allPatient);
+			}
+			return patientList;
 		}
-	
+	*/
 	
 	
 	
 	
 
 	public void initialize(URL location, ResourceBundle resources) {
-	/*
-		ERwaitingListPatient.setCellValueFactory(new PropertyValueFactory<Patient, String>("patient"));
+		
+		
+			
+			
+		
+		
+		
+		ERwaitingListPatient.setCellValueFactory(new PropertyValueFactory<Patient, String>("name"));
 		ERwaitingListPrio.setCellValueFactory(new PropertyValueFactory<Patient, Integer>("prio"));
-		ERwaitingListNote.setCellValueFactory(new PropertyValueFactory<Patient, String>("note"));
-		ERwaitingListTime.setCellValueFactory(new PropertyValueFactory<Patient, Long>("time"));
+		
+		ERwaitingListTime.setCellValueFactory(new PropertyValueFactory<Patient, Long>("startTime"));
+		/*
+		ORwaitingListPatient.setCellValueFactory(new PropertyValueFactory<Patient, String>("name"));
+		ORwaitingListPrio.setCellValueFactory(new PropertyValueFactory<Patient, Integer>("prio"));
+		
+		ORwaitingListTime.setCellValueFactory(new PropertyValueFactory<Patient, Long>("startTime"));
+		
 		*/
 
 		    Timer timer = new Timer();
 		    
-		    timer.schedule(new TimerTask() {
+		    try {
+				ERWaitingList.setItems(getERWaitingList());
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		    		  
+		    		  
+		    	    System.out.print("hej");
+		   
+        
+		    timer.scheduleAtFixedRate(new TimerTask() {
 		    	  @Override
 		    	  public void run() {
-		    		 try {
+		    		  try {
 						ERWaitingList.setItems(getERWaitingList());
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-		    		  
-		    		  
-		    	    System.out.print("hej");
-		    	  }
-		    	}, 15*1000);
-        
-		    timer.scheduleAtFixedRate(new TimerTask() {
-		    	  @Override
-		    	  public void run() {
 		    		  System.out.println("hej");
 		    	    // Your database code here
 		    	  }

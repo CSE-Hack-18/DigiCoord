@@ -3,17 +3,17 @@ import java.util.*;
 public class Patient implements Comparable<Patient>  {
 	
 	private String name;
-	private String SSN;
+	private int SSN;
 	private int prio;
 	private long startTime;
 	private String destination;
 	
 	
 	
-	public Patient(String name, String sSN, int prio, String destination, long startTime) {
+	public Patient(String name, int SSN, int prio, String destination, long startTime) {
 		
 		this.name = name;
-		this.SSN = sSN;
+		this.SSN = SSN;
 		this.prio = prio;
 		this.destination = destination;
 		this.startTime = startTime;

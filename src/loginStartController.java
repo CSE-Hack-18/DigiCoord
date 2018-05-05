@@ -31,7 +31,7 @@ public class loginStartController {
 		this.passwordLogin = passwordLogin;
 	}
 	
-	
+	 
 
 	public TextField getIdLogin() {
 		return idLogin;

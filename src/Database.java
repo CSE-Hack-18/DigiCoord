@@ -190,12 +190,10 @@ public class Database implements AutoCloseable {
 		return roomList;
 	}
 	public ArrayList<Patient> getWaitingPatients() throws SQLException {
-		String getPatients = "WITH roomPatients AS ("
-				+ "SELECT name,ssn,id,reg_time,prio FROM employee as e INNER JOIN"
-				+ "room_occupancy as r ON e.id = r.patient_id),"
-				+ "allPatients AS ("
-				+ "SELECT * FROM patient)"
-				+ "SELECT * FROM allPatients EXCEPT roomPatients;";
+		String getPatients = "SELECT * FROM patient EXCEPT "
+				+ "SELECT p.name, p.ssn, p.reg_time, p.prio, p.destination "
+				+ "FROM patient as p \n" + 
+				"INNER JOIN room_occupancy as r WHERE p.ssn = r.p_ssn;";
 		ResultSet patientSet = PreparedQuery(getPatients);
 		ArrayList<Patient> result = rsToPatientWoRoomArray(patientSet);
 		
@@ -203,7 +201,7 @@ public class Database implements AutoCloseable {
 	}
 	public ArrayList<Patient> rsToPatientWoRoomArray(ResultSet patientSet) throws SQLException {
 		ArrayList<Patient> patientList = new ArrayList<Patient>();
-		String name;
+		String name, destination;
 		int ssn, prio, reg_time;
 		
 		while(patientSet.next()) {
@@ -212,7 +210,8 @@ public class Database implements AutoCloseable {
 			ssn = patientSet.getInt("ssn");
 			prio = patientSet.getInt("prio");
 			reg_time = patientSet.getInt("reg_time");
-			Patient temp = new Patient(name, ssn, prio, reg_time);
+			destination = patientSet.getString("destination");
+			Patient temp = new Patient(name, ssn, prio, destination, reg_time);
 			patientList.add(temp);
 		}
 		patientSet.close();
@@ -281,12 +280,14 @@ public class Database implements AutoCloseable {
 	public void close() throws Exception {
 		conn.close();
 	}
-	public Patient[] getERWaitingList(String dept) throws SQLException {
+	public ArrayList<Patient> getERWaitingList() throws SQLException {
 
 		String sql = "SELECT * FROM patient";
 		ResultSet customerSet = PreparedQuery(sql);
-		Patient[] customerArray = rsToPatientArrayPlus(customerSet);
+		ArrayList<Patient> customerArray = rsToPatientWoRoomArray(customerSet);
 		return customerArray;
+		
+		
 }
 	public Patient[] rsToPatientArrayPlus(ResultSet customerSet) throws SQLException {
 		ArrayList<Patient> patientList= new ArrayList<Patient>();
@@ -295,10 +296,9 @@ public class Database implements AutoCloseable {
 		long startTime;
 		while(customerSet.next()) {
 			name = customerSet.getString("name");
-			sSn = customerSet.getString("sSN");
 			prio = customerSet.getInt("prio");
 			destination = customerSet.getString("destination");
-			startTime = customerSet.getLong("startTime");
+			startTime = customerSet.getLong("reg_time");
 			
 			Patient temp = new Patient( name, sSn, prio, destination, startTime);
 			patientList.add(temp);	
@@ -307,4 +307,31 @@ public class Database implements AutoCloseable {
 		Patient[] patientArray = patientList.toArray(new Patient[patientList.size()]);
 		return patientArray;
 	}
-}
+	
+	public ArrayList<Room> getOccupiedRooms( ) throws SQLException {
+		ArrayList<Room> roomList = new ArrayList<Room>();
+		String getStaff = "SELECT * FROM room_occupancy WHERE roomNr = 'NULL';";
+		ResultSet roomOccupied = PreparedQuery(getStaff);
+		ArrayList<Room> customerArray = rsToOccupiedRooms(roomOccupied);
+		return customerArray;
+		
+	
+	}
+	
+	public ArrayList<Room> rsToOccupiedRooms(ResultSet roomOccupied) throws SQLException {
+		ArrayList<Room> roomList= new ArrayList<Room>();
+		int roomNr;
+		while(roomOccupied.next()) {
+			roomNr = roomOccupied.getInt("roomNr");
+		
+			Room temp = new Room (roomNr);
+			roomList.add(temp);
+		}
+		roomOccupied.close();
+			return roomList;
+		
+	}
+	
+	}
+
+

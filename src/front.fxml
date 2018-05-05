@@ -52,37 +52,33 @@
                                           <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#da2b2b" height="92.0" layoutX="995.0" layoutY="417.0" stroke="BLACK" strokeType="OUTSIDE" width="58.0" />
                                           <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#da2b2b" height="58.0" layoutX="857.0" layoutY="477.0" stroke="BLACK" strokeType="OUTSIDE" width="92.0" />
                                           <Rectangle fx:id="room103" arcHeight="5.0" arcWidth="5.0" fill="#da2b2b" height="58.0" layoutX="858.0" layoutY="537.0" stroke="BLACK" strokeType="OUTSIDE" width="92.0" />
-                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fff30" height="58.0" layoutX="858.0" layoutY="597.0" stroke="BLACK" strokeType="OUTSIDE" width="92.0" />
                                           <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fff30" height="92.0" layoutX="1055.0" layoutY="417.0" stroke="BLACK" strokeType="OUTSIDE" width="58.0" />
                                           <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#da2b2b" height="92.0" layoutX="1115.0" layoutY="417.0" stroke="BLACK" strokeType="OUTSIDE" width="58.0" />
                                           <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fff30" height="92.0" layoutX="1175.0" layoutY="417.0" stroke="BLACK" strokeType="OUTSIDE" width="58.0" />
-                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fff30" height="92.0" layoutX="1235.0" layoutY="417.0" stroke="BLACK" strokeType="OUTSIDE" width="58.0" />
                                           <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fff30" height="92.0" layoutX="995.0" layoutY="543.0" stroke="BLACK" strokeType="OUTSIDE" width="58.0" />
                                           <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#da2b2b" height="92.0" layoutX="1055.0" layoutY="543.0" stroke="BLACK" strokeType="OUTSIDE" width="58.0" />
                                           <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fff30" height="92.0" layoutX="1115.0" layoutY="543.0" stroke="BLACK" strokeType="OUTSIDE" width="58.0" />
-                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#da2b2b" height="92.0" layoutX="1175.0" layoutY="543.0" stroke="BLACK" strokeType="OUTSIDE" width="58.0" />
-                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#da2b2b" height="92.0" layoutX="1235.0" layoutY="543.0" stroke="BLACK" strokeType="OUTSIDE" width="58.0" />
                                           <Button fx:id="testUpdate" layoutX="1113.0" layoutY="368.0" mnemonicParsing="false" onAction="#testUpdate" text="Update" />
                                           <TableView fx:id="ERWaitingList" layoutX="41.0" layoutY="18.0" prefHeight="355.0" prefWidth="549.0">
                                             <columns>
-                                              <TableColumn prefWidth="170.0" text="Patient" />
-                                              <TableColumn prefWidth="114.0" text="Prio" />
-                                                <TableColumn prefWidth="147.0" text="Note" />
-                                                <TableColumn prefWidth="117.0" text="Waited time" />
+                                              <TableColumn fx:id="ERwaitingListPatient" prefWidth="170.0" text="Patient" />
+                                              <TableColumn fx:id="ERwaitingListPrio" prefWidth="114.0" text="Prio" />
+                                                <TableColumn fx:id="ERwaitingListNote" prefWidth="147.0" text="Note" />
+                                                <TableColumn fx:id="ERwaitingListTime" prefWidth="117.0" text="Waited time" />
                                             </columns>
                                           </TableView>
-                                          <TableView layoutX="851.0" layoutY="18.0" prefHeight="200.0" prefWidth="491.0">
+                                          <TableView fx:id="roomInfo" layoutX="851.0" layoutY="18.0" prefHeight="200.0" prefWidth="491.0">
                                             <columns>
-                                              <TableColumn prefWidth="156.0" text="Vacant private rooms" />
-                                                <TableColumn prefWidth="165.5892333984375" text="Vacant shared rooms" />
-                                              <TableColumn prefWidth="169.4107666015625" text="Total patients" />
+                                              <TableColumn fx:id="vacantRooms" prefWidth="156.0" text="Vacant private rooms" />
+                                                <TableColumn fx:id="vacantSharedRooms" prefWidth="165.5892333984375" text="Vacant beds" />
+                                              <TableColumn fx:id="totalPatients" prefWidth="169.4107666015625" text="Total occupied rooms" />
                                             </columns>
                                           </TableView>
                                        </children>
                                     </Pane>
                                  </content>
                               </Tab>
-                              <Tab fx:id="OR" text="OR">
+                              <Tab fx:id="ORwaitingListPatient" text="OR">
                                  <content>
                                     <Pane prefHeight="785.0" prefWidth="1442.0">
                                        <children>
@@ -116,12 +112,12 @@
                                           <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#da2b2b" height="92.0" layoutX="1115.0" layoutY="630.0" stroke="BLACK" strokeType="OUTSIDE" width="58.0" />
                                           <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#da2b2b" height="92.0" layoutX="1235.0" layoutY="630.0" stroke="BLACK" strokeType="OUTSIDE" width="58.0" />
                                           <Button fx:id="testUpdate1" layoutX="1113.0" layoutY="368.0" mnemonicParsing="false" onAction="#testUpdate" text="Update" />
-                                          <TableView layoutX="41.0" layoutY="18.0" prefHeight="355.0" prefWidth="549.0">
+                                          <TableView fx:id="ORwaitingListPatient" layoutX="41.0" layoutY="18.0" prefHeight="355.0" prefWidth="549.0">
                                              <columns>
                                                 <TableColumn prefWidth="170.0" text="Patient" />
-                                                <TableColumn prefWidth="114.0" text="Prio" />
-                                                <TableColumn prefWidth="147.0" text="Note" />
-                                                <TableColumn prefWidth="117.0" text="Waited time" />
+                                                <TableColumn fx:id="ORwaitingListPrio" prefWidth="114.0" text="Prio" />
+                                                <TableColumn fx:id="ORwaitingListNote" prefWidth="147.0" text="Note" />
+                                                <TableColumn fx:id="ERwaitingListTime" prefWidth="117.0" text="Waited time" />
                                              </columns>
                                           </TableView>
                                           <TableView layoutX="851.0" layoutY="18.0" prefHeight="200.0" prefWidth="491.0">
@@ -283,63 +279,6 @@
                                           <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#da2b2b" height="92.0" layoutX="1175.0" layoutY="543.0" stroke="BLACK" strokeType="OUTSIDE" width="58.0" />
                                           <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#da2b2b" height="92.0" layoutX="1235.0" layoutY="543.0" stroke="BLACK" strokeType="OUTSIDE" width="58.0" />
                                           <Button fx:id="testUpdate1111" layoutX="1113.0" layoutY="368.0" mnemonicParsing="false" onAction="#testUpdate" text="Update" />
-                                          <TableView layoutX="41.0" layoutY="18.0" prefHeight="355.0" prefWidth="549.0">
-                                             <columns>
-                                                <TableColumn prefWidth="170.0" text="Patient" />
-                                                <TableColumn prefWidth="114.0" text="Prio" />
-                                                <TableColumn prefWidth="147.0" text="Note" />
-                                                <TableColumn prefWidth="117.0" text="Waited time" />
-                                             </columns>
-                                          </TableView>
-                                          <TableView layoutX="851.0" layoutY="18.0" prefHeight="200.0" prefWidth="491.0">
-                                             <columns>
-                                                <TableColumn prefWidth="156.0" text="Vacant private rooms" />
-                                                <TableColumn prefWidth="165.5892333984375" text="Vacant shared rooms" />
-                                                <TableColumn prefWidth="169.4107666015625" text="Total patients" />
-                                             </columns>
-                                          </TableView>
-                                       </children>
-                                    </Pane>
-                                 </content>
-                              </Tab>
-                              <Tab fx:id="MCU" text="MCU">
-                                 <content>
-                                    <Pane prefHeight="785.0" prefWidth="1442.0">
-                                       <children>
-                                          <TableView layoutX="41.0" layoutY="412.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="308.0" prefWidth="551.0">
-                                             <columns>
-                                                <TableColumn prefWidth="150.0" text="Title" />
-                                                <TableColumn prefWidth="200.0" text="In charge" />
-                                                <TableColumn prefWidth="199.0" text="On Call" />
-                                             </columns>
-                                          </TableView>
-                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e0e6eb" height="308.0" layoutX="856.0" layoutY="416.0" stroke="BLACK" strokeType="INSIDE" width="495.0" />
-                                          <Pane layoutX="944.0" layoutY="364.0" prefHeight="35.0" prefWidth="178.0">
-                                             <children>
-                                                <RadioButton layoutX="9.0" layoutY="8.0" mnemonicParsing="false" selected="true" text="1">
-                                                   <toggleGroup>
-                                                      <ToggleGroup fx:id="floor11111" />
-                                                   </toggleGroup>
-                                                </RadioButton>
-                                                <RadioButton layoutX="57.0" layoutY="8.0" mnemonicParsing="false" text="2" toggleGroup="$floor11111" />
-                                             </children>
-                                          </Pane>
-                                          <Text layoutX="887.0" layoutY="386.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Floor" />
-                                          <Rectangle fx:id="room10111111" arcHeight="5.0" arcWidth="5.0" fill="#1fff30" height="58.0" layoutX="857.0" layoutY="417.0" stroke="BLACK" strokeType="OUTSIDE" width="92.0" />
-                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#da2b2b" height="92.0" layoutX="995.0" layoutY="417.0" stroke="BLACK" strokeType="OUTSIDE" width="58.0" />
-                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#da2b2b" height="58.0" layoutX="857.0" layoutY="477.0" stroke="BLACK" strokeType="OUTSIDE" width="92.0" />
-                                          <Rectangle fx:id="room10311111" arcHeight="5.0" arcWidth="5.0" fill="#da2b2b" height="58.0" layoutX="858.0" layoutY="537.0" stroke="BLACK" strokeType="OUTSIDE" width="92.0" />
-                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fff30" height="58.0" layoutX="858.0" layoutY="597.0" stroke="BLACK" strokeType="OUTSIDE" width="92.0" />
-                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fff30" height="92.0" layoutX="1055.0" layoutY="417.0" stroke="BLACK" strokeType="OUTSIDE" width="58.0" />
-                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#da2b2b" height="92.0" layoutX="1115.0" layoutY="417.0" stroke="BLACK" strokeType="OUTSIDE" width="58.0" />
-                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fff30" height="92.0" layoutX="1175.0" layoutY="417.0" stroke="BLACK" strokeType="OUTSIDE" width="58.0" />
-                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fff30" height="92.0" layoutX="1235.0" layoutY="417.0" stroke="BLACK" strokeType="OUTSIDE" width="58.0" />
-                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fff30" height="92.0" layoutX="995.0" layoutY="543.0" stroke="BLACK" strokeType="OUTSIDE" width="58.0" />
-                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#da2b2b" height="92.0" layoutX="1055.0" layoutY="543.0" stroke="BLACK" strokeType="OUTSIDE" width="58.0" />
-                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fff30" height="92.0" layoutX="1115.0" layoutY="543.0" stroke="BLACK" strokeType="OUTSIDE" width="58.0" />
-                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#da2b2b" height="92.0" layoutX="1175.0" layoutY="543.0" stroke="BLACK" strokeType="OUTSIDE" width="58.0" />
-                                          <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#da2b2b" height="92.0" layoutX="1235.0" layoutY="543.0" stroke="BLACK" strokeType="OUTSIDE" width="58.0" />
-                                          <Button fx:id="testUpdate11111" layoutX="1113.0" layoutY="368.0" mnemonicParsing="false" onAction="#testUpdate" text="Update" />
                                           <TableView layoutX="41.0" layoutY="18.0" prefHeight="355.0" prefWidth="549.0">
                                              <columns>
                                                 <TableColumn prefWidth="170.0" text="Patient" />

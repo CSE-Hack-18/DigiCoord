@@ -12,6 +12,10 @@ public class Room {
 		this.patientArray = patientArray;
 	}
 	
+	public Room(int nr) {
+		this.nr = nr;
+	}
+
 	public int getCapacity() {
 		return capacity;
 	}
