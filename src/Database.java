@@ -62,7 +62,6 @@ public class Database implements AutoCloseable {
 		String sql = "CREATE TABLE IF NOT EXISTS patient ( " + EOL + 
 				"name VARCHAR," + EOL + 
 				"ssn VARCAHR," + EOL + 
-				"id AUTOINCREMENT," + EOL + 
 				"reg_time DATE," + EOL + 
 				"prio INTEGER," + EOL +
 				"destination INTEGER," + EOL +
@@ -76,18 +75,18 @@ public class Database implements AutoCloseable {
 				"unit INTEGER," + EOL + 
 				"beds INTEGER," + EOL + 
 				"cleaning BOOLEAN," + EOL + 
-				"PRIMARY KEY (number, unit)" + EOL + 
+				"PRIMARY KEY (number, unit)," + EOL + 
 				"FOREIGN KEY (unit) REFERENCES unit(unit_id));";
 		PreparedExecute(sql);
 	}
 	public void createRoomOccupancyTable() throws SQLException {
 		String sql = "CREATE TABLE IF NOT EXISTS room_occupancy (" + EOL + 
-				"patient_id INTEGER," + EOL + 
+				"p_ssn INTEGER," + EOL + 
 				"roomNr INTEGER," + EOL + 
 				"unit INTEGER," + EOL + 
-				"PK ( patient_id, roomNr, unit)," + EOL + 
-				"FK (patient_id) REFERENCES patient(id)," + EOL + 
-				"FK (roomNr, unit) REFERENCES room(number, unit));";
+				"PRIMARY KEY( p_ssn, roomNr, unit)," + EOL + 
+				"FOREIGN KEY (p_ssn) REFERENCES patient(ssn)," + EOL + 
+				"FOREIGN KEY (roomNr, unit) REFERENCES room(number, unit));";
 		PreparedExecute(sql);
 	}
 	public void createAdminTable() throws SQLException {
