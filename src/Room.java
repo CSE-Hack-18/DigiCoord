@@ -28,10 +28,6 @@ public class Room {
 		this.nr = number;
 		this.capacity = capacity2;
 		this.status = status;
-
-	
-
-
 		this.patientArray = new ArrayList<Patient>();
 	}
 

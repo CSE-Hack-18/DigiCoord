@@ -295,16 +295,17 @@ public class Database implements AutoCloseable {
 }
 	public Patient[] rsToPatientArrayPlus(ResultSet customerSet) throws SQLException {
 		ArrayList<Patient> patientList= new ArrayList<Patient>();
-		String name, sSn, destination;
-		int  prio;
+		String name, destination;
+		int  prio, ssn;
 		long startTime;
 		while(customerSet.next()) {
 			name = customerSet.getString("name");
 			prio = customerSet.getInt("prio");
+			ssn = customerSet.getInt("ssn");
 			destination = customerSet.getString("destination");
 			startTime = customerSet.getLong("reg_time");
 			
-			Patient temp = new Patient( name, sSn, prio, destination, startTime);
+			Patient temp = new Patient( name, ssn, prio, destination, startTime);
 			patientList.add(temp);	
 		}
 		customerSet.close();
