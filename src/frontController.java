@@ -38,11 +38,12 @@ public class frontController implements Initializable {
 
 	
 	   @FXML
-	    private TableView<Patient>  ERWaitingList, ORWaitingList; //roomInfo,
+	    private TableView<Patient>  ERWaitingList, ORWaitingList, oncWaitingList, allWaitingList; //roomInfo,
 	   @FXML
-	    private TableColumn<Patient, String> ERwaitingListPatient, ERwaitingListNote; //ORwaitingListPatient, ORwaitingListNote ;
-		@FXML private TableColumn<Patient, Integer> ERwaitingListPrio, vacantRooms, vacantSharedRooms, totalPatients;// ORwaitingListPrio;
-		@FXML private TableColumn<Patient, Long> ERwaitingListTime; //ORwaitingListTime;
+	    private TableColumn<Patient, String> ERwaitingListPatient, ERwaitingListNote, ORwaitingListPatient, ORwaitingListNote, oncPatient,
+	    oncNote;
+		@FXML private TableColumn<Patient, Integer> ERwaitingListPrio, vacantRooms, vacantSharedRooms, totalPatients, ORwaitingListPrio, oncPrio;
+		@FXML private TableColumn<Patient, Long> ERwaitingListTime, ORwaitingListTime, oncWaited;
 		
 
 	private coordinator DigiCoord;
@@ -54,15 +55,69 @@ public class frontController implements Initializable {
 	@FXML
     private Button changeRoomManually, addRoomManually, testUpdate;
 	@FXML
-	private Rectangle b101,b102,b103,b104,b105,b106,b107,b108,b109,b110;
+	private Rectangle b101,b102,b103,b104,b105,b106,b107,b108,b109, b110,
+	b201, b202, b203, b204, b205, b206, b207, b208, b209, b210,
+	b301, b302, b303, b304, b305, b306, b307, b308, b309, b310;
 	
-    
-
+	
+   
+	public ArrayList<Rectangle> addUnit1() {
+	ArrayList<Rectangle> unit1= new ArrayList<Rectangle>();
+	unit1.add(b101);
+	unit1.add(b102);
+	unit1.add(b103);
+	unit1.add(b104);
+	unit1.add(b105);
+	unit1.add(b106);
+	unit1.add(b107);
+	unit1.add(b108);
+	unit1.add(b109);
+	unit1.add(b110);
+	
+	return unit1;
+	
+	}
+	public ArrayList<Rectangle> addUnit2() {
+		ArrayList<Rectangle> unit2= new ArrayList<Rectangle>();
+		unit2.add(b201);
+		unit2.add(b202);
+		unit2.add(b203);
+		unit2.add(b204);
+		unit2.add(b205);
+		unit2.add(b206);
+		unit2.add(b207);
+		unit2.add(b208);
+		unit2.add(b209);
+		unit2.add(b210);
+		
+		return unit2;
+		
+		
+		}
+	public ArrayList<Rectangle> addUnit3() {
+		ArrayList<Rectangle> unit3= new ArrayList<Rectangle>();
+		unit3.add(b301);
+		unit3.add(b302);
+		unit3.add(b303);
+		unit3.add(b304);
+		unit3.add(b305);
+		unit3.add(b306);
+		unit3.add(b307);
+		unit3.add(b308);
+		unit3.add(b309);
+		unit3.add(b310);
+		
+		return unit3;
+		
+		
+		}
+	 
+	/*
     private Rectangle[] unit1Boxes = new Rectangle[] {null,b101,b102,b103,b104,b105,b106,b107,b108,b109,b110};
     //private Rectangle[] unit2Boxes = new Rectangle[] {null,b201,b202,b203,b204,b205,b206,b207,b208,b209,b120};
     //private Rectangle[] unit3Boxes = new Rectangle[] {null,b301,b302,b303,b304,b305,b306,b307,b308,b309,b130};
 	
-
+*/
     
     
     @FXML
@@ -79,7 +134,7 @@ public class frontController implements Initializable {
 	   b103.setFill(Color.LIMEGREEN);
 	   roomStatus = "occupied";
 	   
-	   }
+	   } 
 	   else if (roomStatus == "occupied") {
 		   b102.setFill(Color.RED);
 		   b105.setFill(Color.YELLOW);
@@ -92,45 +147,50 @@ public class frontController implements Initializable {
    } 
 	public void updateUnits() {
 		updateUnit1Boxes();
+		updateUnit2Boxes();
+		updateUnit3Boxes();
 		
 	}
 	public void updateUnit1Boxes() {
+		ArrayList<Rectangle> unit1= addUnit1();
 		int[] check = DigiCoord.getAvailableRooms(1);
 		
-		for(int i = 1; i < unit1Boxes.length+1; i++) {
+		for(int i = 1; i < unit1.size(); i++) {
 			if(check[i] == 0) {
-				unit1Boxes[i].setFill(Color.RED);
+				unit1.get(i).setFill(Color.RED);
 			}
 			else {
-				unit1Boxes[i].setFill(Color.LIMEGREEN);
+				unit1.get(i).setFill(Color.LIMEGREEN);
 			}
 		}
 	}	
-	/*
+	
 	public void updateUnit2Boxes() {
-		int[] check = DigiCoord.getAvailableRooms(2);
+		ArrayList<Rectangle> unit2= addUnit2();
+		int[] check = DigiCoord.getAvailableRooms(1);
 		
-		for(int i = 0; i < unit2Boxes.length; i++) {
+		for(int i = 1; i < unit2.size(); i++) {
 			if(check[i] == 0) {
-				unit2Boxes[i].setFill(Color.RED);
+				unit2.get(i).setFill(Color.RED);
 			}
 			else {
-				unit2Boxes[i].setFill(Color.LIMEGREEN);
+				unit2.get(i).setFill(Color.LIMEGREEN);
 			}
 		}
 	}
 	public void updateUnit3Boxes() {
-		int[] check = DigiCoord.getAvailableRooms(3);
+		ArrayList<Rectangle> unit3= addUnit3();
+		int[] check = DigiCoord.getAvailableRooms(1);
 		
-		for(int i = 0; i < unit3Boxes.length; i++) {
+		for(int i = 1; i < unit3.size(); i++) {
 			if(check[i] == 0) {
-				unit3Boxes[i].setFill(Color.RED);
+				unit3.get(i).setFill(Color.RED);
 			}
 			else {
-				unit3Boxes[i].setFill(Color.LIMEGREEN);
+				unit3.get(i).setFill(Color.LIMEGREEN);
 			}
 		}
-	}*/
+	}
 	@FXML
 	void changeRoomManually(ActionEvent event) {
 		
@@ -184,17 +244,21 @@ public class frontController implements Initializable {
 		ERwaitingListPrio.setCellValueFactory(new PropertyValueFactory<Patient, Integer>("prio"));
 		
 		ERwaitingListTime.setCellValueFactory(new PropertyValueFactory<Patient, Long>("startTime"));
-		/*
+		
 		ORwaitingListPatient.setCellValueFactory(new PropertyValueFactory<Patient, String>("name"));
 		ORwaitingListPrio.setCellValueFactory(new PropertyValueFactory<Patient, Integer>("prio"));
 		
 		ORwaitingListTime.setCellValueFactory(new PropertyValueFactory<Patient, Long>("startTime"));
 		
-		*/
+		oncPatient.setCellValueFactory(new PropertyValueFactory<Patient, String>("name"));
+		oncPrio.setCellValueFactory(new PropertyValueFactory<Patient, Integer>("prio"));
+		
+		oncWaited.setCellValueFactory(new PropertyValueFactory<Patient, Long>("startTime"));
 
 
 		System.out.println("hej");
-			//DigiCoord = new coordinator();
+			
+		DigiCoord = new coordinator();
 
 		    Timer timer = new Timer();
 		    
