@@ -62,7 +62,6 @@
                                           <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fff30" height="92.0" layoutX="1115.0" layoutY="543.0" stroke="BLACK" strokeType="OUTSIDE" width="58.0" />
                                           <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#da2b2b" height="92.0" layoutX="1175.0" layoutY="543.0" stroke="BLACK" strokeType="OUTSIDE" width="58.0" />
                                           <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#da2b2b" height="92.0" layoutX="1235.0" layoutY="543.0" stroke="BLACK" strokeType="OUTSIDE" width="58.0" />
-                                          <Button fx:id="testUpdate" layoutX="1113.0" layoutY="368.0" mnemonicParsing="false" onAction="#testUpdate" text="Update" />
                                           <TableView layoutX="41.0" layoutY="18.0" prefHeight="355.0" prefWidth="549.0">
                                             <columns>
                                               <TableColumn prefWidth="170.0" text="Patient" />
@@ -115,7 +114,6 @@
                                           <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fff30" height="92.0" layoutX="1175.0" layoutY="630.0" stroke="BLACK" strokeType="OUTSIDE" width="58.0" />
                                           <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#da2b2b" height="92.0" layoutX="1115.0" layoutY="630.0" stroke="BLACK" strokeType="OUTSIDE" width="58.0" />
                                           <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#da2b2b" height="92.0" layoutX="1235.0" layoutY="630.0" stroke="BLACK" strokeType="OUTSIDE" width="58.0" />
-                                          <Button fx:id="testUpdate1" layoutX="1113.0" layoutY="368.0" mnemonicParsing="false" onAction="#testUpdate" text="Update" />
                                           <TableView layoutX="41.0" layoutY="18.0" prefHeight="355.0" prefWidth="549.0">
                                              <columns>
                                                 <TableColumn prefWidth="170.0" text="Patient" />
@@ -162,7 +160,6 @@
                                           <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#da2b2b" height="58.0" layoutX="857.0" layoutY="477.0" stroke="BLACK" strokeType="OUTSIDE" width="92.0" />
                                           <Rectangle fx:id="room10311" arcHeight="5.0" arcWidth="5.0" fill="#da2b2b" height="58.0" layoutX="858.0" layoutY="537.0" stroke="BLACK" strokeType="OUTSIDE" width="92.0" />
                                           <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fff30" height="58.0" layoutX="858.0" layoutY="597.0" stroke="BLACK" strokeType="OUTSIDE" width="92.0" />
-                                          <Button fx:id="testUpdate11" layoutX="1113.0" layoutY="368.0" mnemonicParsing="false" onAction="#testUpdate" text="Update" />
                                           <TableView layoutX="41.0" layoutY="18.0" prefHeight="355.0" prefWidth="549.0">
                                              <columns>
                                                 <TableColumn prefWidth="170.0" text="Patient" />
@@ -225,7 +222,6 @@
                                           <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fff30" height="92.0" layoutX="1115.0" layoutY="543.0" stroke="BLACK" strokeType="OUTSIDE" width="58.0" />
                                           <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#da2b2b" height="92.0" layoutX="1175.0" layoutY="543.0" stroke="BLACK" strokeType="OUTSIDE" width="58.0" />
                                           <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#da2b2b" height="92.0" layoutX="1235.0" layoutY="543.0" stroke="BLACK" strokeType="OUTSIDE" width="58.0" />
-                                          <Button fx:id="testUpdate111" layoutX="1113.0" layoutY="368.0" mnemonicParsing="false" onAction="#testUpdate" text="Update" />
                                           <TableView layoutX="41.0" layoutY="18.0" prefHeight="355.0" prefWidth="549.0">
                                              <columns>
                                                 <TableColumn prefWidth="170.0" text="Patient" />
@@ -282,7 +278,6 @@
                                           <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fff30" height="92.0" layoutX="1115.0" layoutY="543.0" stroke="BLACK" strokeType="OUTSIDE" width="58.0" />
                                           <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#da2b2b" height="92.0" layoutX="1175.0" layoutY="543.0" stroke="BLACK" strokeType="OUTSIDE" width="58.0" />
                                           <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#da2b2b" height="92.0" layoutX="1235.0" layoutY="543.0" stroke="BLACK" strokeType="OUTSIDE" width="58.0" />
-                                          <Button fx:id="testUpdate1111" layoutX="1113.0" layoutY="368.0" mnemonicParsing="false" onAction="#testUpdate" text="Update" />
                                           <TableView layoutX="41.0" layoutY="18.0" prefHeight="355.0" prefWidth="549.0">
                                              <columns>
                                                 <TableColumn prefWidth="170.0" text="Patient" />
@@ -339,7 +334,6 @@
                                           <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fff30" height="92.0" layoutX="1115.0" layoutY="543.0" stroke="BLACK" strokeType="OUTSIDE" width="58.0" />
                                           <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#da2b2b" height="92.0" layoutX="1175.0" layoutY="543.0" stroke="BLACK" strokeType="OUTSIDE" width="58.0" />
                                           <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#da2b2b" height="92.0" layoutX="1235.0" layoutY="543.0" stroke="BLACK" strokeType="OUTSIDE" width="58.0" />
-                                          <Button fx:id="testUpdate11111" layoutX="1113.0" layoutY="368.0" mnemonicParsing="false" onAction="#testUpdate" text="Update" />
                                           <TableView layoutX="41.0" layoutY="18.0" prefHeight="355.0" prefWidth="549.0">
                                              <columns>
                                                 <TableColumn prefWidth="170.0" text="Patient" />
