@@ -18,7 +18,7 @@ public class Patient implements Comparable<Patient>  {
 	public Patient(String name, int sSN, int prio, String destination, long startTime) {
 
 		this.name = name;
-		this.SSN = SSN;
+		this.SSN = sSN;
 		this.prio = prio;
 		this.destination = destination;
 		this.startTime = startTime;

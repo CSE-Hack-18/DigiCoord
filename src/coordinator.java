@@ -20,10 +20,7 @@ public class coordinator {
 				tempUnit.setRooms(tempRoom);
 				tempUnit.addAllPatients(tempPatient);
 				units[i] = tempUnit;
-				System.out.println("tempStaff size" + tempStaff.size());
-				System.out.println("tempRoom size" + tempRoom.size());
-				System.out.println("tempPatient size" + tempPatient.size());
-				System.out.println("tempUnit id" + tempUnit.getId());
+				
 				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -42,7 +39,19 @@ public class coordinator {
 		queque.add(p);
 		Collections.sort(queque);
 	}
-	
+	public void removePatient(int ssn, int unit) throws SQLException{
+		
+		try(Database db = new Database()) {
+			db.removePatient(ssn);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		units[unit].removePatient(ssn);
+		
+		
+		
+	}
 	public int[] getAvailableRooms(int unit) {
 		return units[unit].getAvailableRooms();
 	}

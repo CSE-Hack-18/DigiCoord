@@ -11,7 +11,6 @@ public class Room {
 		
 		this.nr = nr;
 		this.status = status;
-
 		this.capacity = capacity;
 		this.patientArray = patientArray;
 	}
@@ -21,8 +20,18 @@ public class Room {
 	public Room(int nr) {
 		this.nr = nr;
 	}
-
-
+	
+	public boolean hasPatient(int ssn) {
+		
+		if(patientArray.get(0).getSSN() == ssn) {
+			return true;
+		}
+		return false;
+	}
+	
+	public void removePatient() {
+		patientArray.remove(0);
+	}
 
 	public Room(int number, int capacity2, boolean status) {
 		this.nr = number;

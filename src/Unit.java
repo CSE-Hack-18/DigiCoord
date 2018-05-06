@@ -56,6 +56,15 @@ public class Unit {
 			}
 		}
 	}
+	public void removePatient(int ssn) {
+		
+		for(int i = 0; i < rooms.size(); i++) {
+			if(rooms.get(i).hasPatient(ssn)) {
+				rooms.get(i).removePatient();
+			}
+		}
+		
+	}
 	public int[] getAvailableRooms() {
 		int[] available = new int[10];
 		for(int i = 0; i < rooms.size(); i++) {
