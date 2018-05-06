@@ -6,12 +6,16 @@ public class Room {
 	public int capacity;
 	public ArrayList<Patient> patientArray;
 	boolean status;
-	public Room(int capacity, ArrayList<Patient> patientArray,int nr,String status) {
-
+	
+	public Room(int capacity, ArrayList<Patient> patientArray,int nr,boolean status) {
+		
+		this.nr = nr;
+		this.status = status;
 
 		this.capacity = capacity;
 		this.patientArray = patientArray;
 	}
+
 
 
 	public Room(int nr) {
@@ -19,10 +23,16 @@ public class Room {
 	}
 
 
+
 	public Room(int number, int capacity2, boolean status) {
 		this.nr = number;
 		this.capacity = capacity2;
 		this.status = status;
+
+	
+
+
+		this.patientArray = new ArrayList<Patient>();
 	}
 
 	public int getCapacity() {

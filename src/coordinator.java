@@ -3,7 +3,7 @@ import java.sql.SQLException;
 import java.util.*;
 
 public class coordinator {
-	Unit[] units = new Unit[6];
+	Unit[] units = new Unit[4];
 
 	public ArrayList<Patient> queque;
 
@@ -23,7 +23,7 @@ public class coordinator {
 				System.out.println("tempStaff size" + tempStaff.size());
 				System.out.println("tempRoom size" + tempRoom.size());
 				System.out.println("tempPatient size" + tempPatient.size());
-				System.out.println("tempUnit size" + tempUnit.getType());
+				System.out.println("tempUnit id" + tempUnit.getId());
 				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

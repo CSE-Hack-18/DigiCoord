@@ -73,7 +73,7 @@
                                               <TableColumn fx:id="totalPatients" prefWidth="169.4107666015625" text="Total occupied rooms" />
                                             </columns>
                                           </TableView>
-                                          <Rectangle fx:id="b101" arcHeight="5.0" arcWidth="5.0" fill="#1fff30" height="61.0" layoutX="857.0" layoutY="416.0" stroke="BLACK" strokeType="INSIDE" width="93.0" />
+                                          <Rectangle fx:id="b101" arcHeight="5.0" arcWidth="5.0" fill="#da2b2b" height="61.0" layoutX="857.0" layoutY="416.0" stroke="BLACK" strokeType="INSIDE" width="93.0" />
                                        </children>
                                     </Pane>
                                  </content>
