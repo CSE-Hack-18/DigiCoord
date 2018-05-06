@@ -219,6 +219,14 @@ public class Database implements AutoCloseable {
 		}
 		patientSet.close();
 		return patientList;
+	}
+	public void removePatient(int patient_id) throws SQLException {
+		
+		String sql1 = "DELETE from patient WHERE ssn = ?";
+		String sql2 = "DELETE from room_occupancy WHERE p_ssn = ?";
+		
+		PreparedUpdate(sql1);
+		PreparedUpdate(sql2);
 		
 	}
 	public ResultSet PreparedQuery(String query, Object...objects) throws SQLException {
