@@ -1,18 +1,18 @@
 import java.util.ArrayList;
 
 public class Room {
-	
-    private int nr;
+
+	private int nr;
 	public int capacity;
 	public ArrayList<Patient> patientArray;
 	boolean status;
 	public Room(int capacity, ArrayList<Patient> patientArray,int nr,String status) {
 
-		
+
 		this.capacity = capacity;
 		this.patientArray = patientArray;
 	}
-	
+
 
 	public Room(int nr) {
 		this.nr = nr;
@@ -22,8 +22,8 @@ public class Room {
 	public Room(int number, int capacity2, boolean status) {
 		this.nr = number;
 		this.capacity = capacity2;
-		this.status = status;;
-}
+		this.status = status;
+	}
 
 	public int getCapacity() {
 		return capacity;
@@ -31,18 +31,15 @@ public class Room {
 	public void setCapacity(int capacity) {
 		this.capacity = capacity;
 	}
-	
-	
+
+
 	public void accomodatePatient(Patient newPatient) {
-		
 		patientArray.add(newPatient);
-		
-		
 	}
-	
+
 	public void removePatient(Patient patient) {
 		patientArray.remove(patient);
-			
+
 	}
 
 	public int getNr() {
@@ -69,6 +66,6 @@ public class Room {
 	public boolean isSingleRoom() {
 		return capacity == 1;
 	}
-	
+
 
 }

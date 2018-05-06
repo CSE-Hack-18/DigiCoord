@@ -20,6 +20,11 @@ public class coordinator {
 				tempUnit.setRooms(tempRoom);
 				tempUnit.addAllPatients(tempPatient);
 				units[i] = tempUnit;
+				System.out.println("tempStaff size" + tempStaff.size());
+				System.out.println("tempRoom size" + tempRoom.size());
+				System.out.println("tempPatient size" + tempPatient.size());
+				System.out.println("tempUnit size" + tempUnit.getType());
+				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -37,7 +42,10 @@ public class coordinator {
 		queque.add(p);
 		Collections.sort(queque);
 	}
-
+	
+	public int[] getAvailableRooms(int unit) {
+		return units[unit].getAvailableRooms();
+	}
 
 	public void placePatient() {
 		for(int i = 0; i < queque.size(); i++) {
@@ -51,4 +59,10 @@ public class coordinator {
 			}
 		}
 	}
+	public static void main(String[] args) {
+		
+		coordinator test = new coordinator();
+
+	}
 }
+

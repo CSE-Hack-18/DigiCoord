@@ -56,7 +56,18 @@ public class Unit {
 			}
 		}
 	}
-
+	public int[] getAvailableRooms() {
+		int[] available = new int[10];
+		for(int i = 0; i < rooms.size(); i++) {
+			if(rooms.get(i).available()) {
+				available[i] = 1;
+			}
+			else {
+				available[i] = 0;
+			}
+		}
+		return available;
+	}
 	public boolean hasAnyAvailableRooms() {
 
 		for(int i = 0; i < rooms.size(); i++) {
@@ -75,9 +86,9 @@ public class Unit {
 		return beds;
 	}
 	public void addAllPatients(ArrayList<Patient> patients) {
-		
-		for(int i = 0; i < rooms.size(); i++) {
-			for( int j = 0; j < patients.size(); j++) {
+
+		for( int j = 0; j < patients.size(); j++) {
+			for(int i = 0; i < rooms.size(); i++) {
 				if(patients.get(j).getRoomNr() == rooms.get(i).getNr()) {
 					rooms.get(i).accomodatePatient(patients.get(j));
 				}
